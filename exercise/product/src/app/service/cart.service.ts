@@ -1,14 +1,10 @@
-// src/app/service/cart.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-// CRITICAL FIX: The file name is 'product.model.ts', not just 'product'
 import { Product } from '../model/product'; 
 import { OrderItemModel, OrderPostModel } from '../model/order.model'; 
 
-// Define a safe type that combines Product properties with quantity
 export type CartItemWithQuantity = Product & { quantity: number };
-
 
 @Injectable({ providedIn: 'root' })
 export class CartService { 
@@ -16,10 +12,7 @@ export class CartService {
   public currentCart: Observable<CartItemWithQuantity[]> = this.cartItemsSubject.asObservable();
 
   constructor() { 
-    // This service only manages client-side state
   }
-
-  // --- Core State Management Functions ---
 
   addToCart(product: Product, quantity: number = 1): void {
     const currentItems = this.cartItemsSubject.getValue();
@@ -54,9 +47,7 @@ export class CartService {
     this.cartItemsSubject.next([]);
   }
 
-  // --- Checkout Preparation (Set Sail) ---
-
-    prepareOrderPayloadByUsername(username: string): OrderPostModel {
+  prepareOrderPayloadByUsername(username: string): OrderPostModel {
     const items = this.cartItemsSubject.getValue().map(item => ({
       productId: item.id,
       quantity: item.quantity,
@@ -64,7 +55,7 @@ export class CartService {
     }));
 
     return {
-      username: username,   // 👈 send username instead of customerId
+      username: username,
       items: items
     } as unknown as OrderPostModel;
   }

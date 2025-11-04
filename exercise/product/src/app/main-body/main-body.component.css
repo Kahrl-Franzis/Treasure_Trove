@@ -1,18 +1,16 @@
-/* src/app/main-body/main-body.component.css */
-
 .welcome-container {
     padding: 80px 40px;
     text-align: center;
-    background-color: #fcf8e3; /* Light beige/khaki color for old paper */
-    border: 10px solid #5a3b1f; /* Wood frame border */
-    color: #3d2f23; /* Dark brown text color (ink) */
+    background-color: #fcf8e3;
+    border: 10px solid #5a3b1f;
+    color: #3d2f23;
     min-height: 90vh;
     box-sizing: border-box;
 }
 
 .pirate-title {
     font-size: 3em;
-    color: #8b4513; /* Dark mahogany color */
+    color: #8b4513;
     border-bottom: 2px solid #5a3b1f;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -27,7 +25,7 @@
     border: 3px solid #8b4513;
     padding: 40px;
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -38,8 +36,7 @@
 }
 
 .btn-hunt-treasure {
-    /* Bold, themed button style */
-    background-color: darkred; /* Thematic color */
+    background-color: darkred;
     color: white;
     padding: 15px 40px;
     border: none;

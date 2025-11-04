@@ -1,8 +1,6 @@
-/* src/app/gallery/gallery.component.css */
-
 .catalog-page-container {
     padding: 30px;
-    background-color: #fefefe; /* Clean white background */
+    background-color: #fefefe;
 }
 
 .pirate-font {
@@ -14,17 +12,14 @@
     text-align: center;
 }
 
-/* --- Layout Fix: The Grid Container --- */
 .product-grid {
     display: grid;
-    /* Sets up a responsive grid: 4 columns max, minimum width 250px */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 30px; /* Space between the cards */
+    gap: 30px;
     max-width: 1300px;
     margin: 0 auto;
 }
 
-/* --- Card Styling --- */
 .product-card {
     background-color: white; 
     border: 1px solid #ddd;
@@ -42,16 +37,14 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* --- Image Styling --- */
 .product-image {
     max-width: 100%;
-    height: 250px; /* Uniform height for catalog view */
-    object-fit: contain; /* Ensures the whole image is visible */
+    height: 250px;
+    object-fit: contain;
     margin-bottom: 10px;
     border-radius: 4px;
 }
 
-/* --- Details and Button Styling --- */
 .product-details {
     flex-grow: 1; 
     display: flex;
@@ -61,7 +54,7 @@
 
 .product-details h3 {
     font-size: 1.1em;
-    min-height: 2.2em; /* Ensures titles take up space even if short */
+    min-height: 2.2em;
     margin: 5px 0;
 }
 
@@ -69,7 +62,7 @@
     font-size: 1.3em;
     color: darkred; 
     font-weight: bold;
-    margin-top: auto; /* Pushes the price and button to the bottom */
+    margin-top: auto;
 }
 
 .btn-stash {

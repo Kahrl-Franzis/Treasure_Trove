@@ -1,5 +1,3 @@
-<!-- src/app/shopping-cart/shopping-cart.component.html -->
-
 <div class="chest-container">
     <h1 class="pirate-font">Your Treasure Chest Manifest</h1>
 
@@ -13,16 +11,13 @@
         <div *ngIf="items.length > 0" class="cart-table-wrapper">
             <table class="cart-table">
                 <thead>
-                    <!-- ... table headers ... -->
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of items">
                         <td>
-                            <!-- FIX 1: These properties must exist on the Product model for the template to compile -->
                             <img [src]="item.imageUrl" [alt]="item.title" class="item-thumb">
                             <span>{{ item.title }}</span>
                         </td>
-                        <!-- FIX 2: Arithmetic error fix is handled by explicit number pipe -->
                         <td>{{ item.price | number:'1.2-2' }}</td>
                         <td>
                             {{ item.quantity }}

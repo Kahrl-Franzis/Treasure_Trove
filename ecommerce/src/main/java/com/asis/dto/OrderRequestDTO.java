@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class OrderRequestDTO {
-    private String pirateUsername;  // ✅ Changed from Long pirateId → String pirateUsername
+    private String pirateUsername;
     private BigDecimal totalAmount;
     private String status;
     private List<OrderItemDTO> orderItems;

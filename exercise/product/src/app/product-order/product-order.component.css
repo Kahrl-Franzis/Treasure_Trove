@@ -1,14 +1,10 @@
-/* src/app/product-order/product-order.component.css */
-
-/* Mahogany background for the entire page */
 .checkout-container {
-    background-color: #8b4513; /* Mahogany color */
+    background-color: #8b4513;
     min-height: 100vh;
     padding: 30px 20px;
     box-sizing: border-box;
 }
 
-/* Pirate-themed title */
 .pirate-font {
     color: #ffd700;
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -19,7 +15,6 @@
     letter-spacing: 2px;
 }
 
-/* Status box */
 .status-box {
     max-width: 800px;
     margin: 20px auto;
@@ -45,7 +40,6 @@
     font-weight: bold;
 }
 
-/* Manifest summary card */
 .manifest-summary {
     max-width: 800px;
     margin: 20px auto;
@@ -74,20 +68,18 @@
     font-weight: 600;
 }
 
-/* Checkout actions */
 .checkout-actions {
     max-width: 800px;
     margin: 30px auto;
     text-align: center;
 }
 
-/* Gold buttons with oblong background */
 .btn-confirm-sail,
 .btn-cancel {
     background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
     color: #000;
     border: 2px solid #8b6914;
-    border-radius: 20px; /* Oblong shape */
+    border-radius: 20px;
     padding: 12px 30px;
     font-size: 1rem;
     font-weight: bold;
@@ -136,7 +128,6 @@
     background: linear-gradient(135deg, #a0522d 0%, #8b4513 50%, #a0522d 100%);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .checkout-container {
         padding: 20px 15px;
@@ -153,4 +144,3 @@
         margin: 8px 0;
     }
 }
-

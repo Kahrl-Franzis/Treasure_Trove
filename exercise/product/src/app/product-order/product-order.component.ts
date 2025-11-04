@@ -46,16 +46,14 @@ export class ProductOrderComponent implements OnInit {
       return;
     }
 
-    // 🎭 FAKE SUCCESS - No actual API call
     this.isProcessing = true;
     this.orderStatusMessage = 'Sending manifest... Setting sail...';
 
     console.log('🎭 FAKE ORDER - Not actually sent to backend');
     console.log('📦 Payload that would be sent:', JSON.stringify(this.orderPayload, null, 2));
 
-    // Simulate a delay like a real API call
     setTimeout(() => {
-      const fakeOrderId = Math.floor(Math.random() * 10000); // Random order ID
+      const fakeOrderId = Math.floor(Math.random() * 10000);
       
       console.log('✅ FAKE SUCCESS - Order ID:', fakeOrderId);
       this.orderStatusMessage = `🎉 Loot Secured! Order ID ${fakeOrderId}. Your shipment is setting sail! 🚢`;
@@ -65,10 +63,9 @@ export class ProductOrderComponent implements OnInit {
       this.cartService.clearCart();
       this.isProcessing = false;
       
-      // Redirect after 1 second
       setTimeout(() => {
         this.router.navigate(['/treasures']);
       }, 1000);
-    }, 1500); // 1.5 second fake loading
+    }, 1500);
   }
 }

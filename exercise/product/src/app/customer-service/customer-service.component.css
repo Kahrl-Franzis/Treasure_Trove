@@ -1,8 +1,5 @@
-/* src/app/customer-service/customer-service.component.css */
-
-/* Mahogany background for the entire page */
 .auth-container {
-    background-color: #8b4513; /* Mahogany color */
+    background-color: #8b4513;
     min-height: 100vh;
     padding: 30px 20px;
     box-sizing: border-box;
@@ -10,7 +7,6 @@
     margin: 0 auto;
 }
 
-/* Pirate-themed title */
 .pirate-title {
     color: #ffd700;
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -21,7 +17,6 @@
     letter-spacing: 2px;
 }
 
-/* Info message */
 .info-message {
     padding: 15px 20px;
     background: linear-gradient(135deg, #fcf8e3 0%, #f5e6d3 100%);
@@ -42,7 +37,6 @@
     color: #8b0000;
 }
 
-/* Auth form card */
 .auth-form {
     background: linear-gradient(135deg, #fcf8e3 0%, #f5e6d3 100%);
     border: 3px solid #5a3b1f;
@@ -53,7 +47,6 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* Form inputs */
 .auth-form input {
     width: 100%;
     padding: 12px 15px;
@@ -80,7 +73,6 @@
     font-style: italic;
 }
 
-/* Gold buttons with oblong background */
 .btn-login,
 .btn-register {
     width: 100%;
@@ -88,7 +80,7 @@
     background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
     color: #000;
     border: 2px solid #8b6914;
-    border-radius: 20px; /* Oblong shape */
+    border-radius: 20px;
     font-size: 1rem;
     font-weight: bold;
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -120,7 +112,6 @@
         inset 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Toggle link */
 .toggle-link {
     margin-top: 20px;
     color: #3d2f23;
@@ -143,7 +134,6 @@
     text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .auth-container {
         padding: 20px 15px;
@@ -157,4 +147,3 @@
         padding: 20px;
     }
 }
-
