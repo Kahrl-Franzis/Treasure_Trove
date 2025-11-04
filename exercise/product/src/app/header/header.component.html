@@ -1,30 +1,40 @@
 <header class="pirate-header">
-    <nav class="pirate-nav">
-        <a [routerLink]="['/']" class="nav-link">Homeport</a>
-        <span class="separator">|</span>
-        <a [routerLink]="['/treasures']" class="nav-link">Catalog of Treasures</a>
-        <span class="separator">|</span>
+  <nav class="pirate-nav-wrapper"> <div class="logo-container">
+      <img src="assets/images/header.png" alt="Treasure Trove Logo" class="treasure-chest-image" />
+    </div>
+
+    <div class="pirate-nav">
+      <a [routerLink]="['/']" class="nav-link">Homeport</a>
+      <span class="separator">|</span>
+
+      <a [routerLink]="['/treasures']" class="nav-link">Catalog of Treasures</a>
+      <span class="separator">|</span>
+
+      <ng-container *ngIf="authService.currentUser | async as user; else loginLink">
         <a [routerLink]="['/chest']" class="nav-link chest-link">
-            <img src="assets/icons/chest.png" alt="Treasure Chest" class="nav-icon">
-            Treasure Chest
+          <img src="assets/icons/chest.png" alt="Treasure Chest" class="nav-icon" />
+          Treasure Chest
         </a>
         <span class="separator">|</span>
-        
-        <ng-container *ngIf="authService.currentUser | async as user; else loginLink">
-            <div class="user-menu" (click)="toggleDropdown()">
-                <a class="nav-link user-name-link">{{ user.username }}</a>
-                
-                <div class="dropdown-content" [class.show]="dropdownOpen">
-                    <a href="#" (click)="logout()">Logout</a>
-                    <a [routerLink]="['/settings']">Settings</a>
-                    <a (click)="deleteAccount()">Delete Account</a>
-                </div>
-            </div>
-        </ng-container>
-        
-        <ng-template #loginLink>
-            <a [routerLink]="['/service']" class="nav-link">Crew Service</a>
-        </ng-template>
 
-    </nav>
+        <div class="user-menu" (click)="toggleDropdown()">
+          <a class="nav-link user-name-link">{{ user.username }}</a>
+          <div class="dropdown-content" [class.show]="dropdownOpen">
+            <a href="#" (click)="logout()">Logout</a>
+            <a [routerLink]="['/settings']">Settings</a>
+            <a (click)="deleteAccount()">Delete Account</a>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #loginLink>
+        <a [routerLink]="['/chest']" class="nav-link chest-link">
+          <img src="assets/icons/chest.png" alt="Treasure Chest" class="nav-icon" />
+          Treasure Chest
+        </a>
+        <span class="separator">|</span>
+        <a [routerLink]="['/service']" class="nav-link">Crew Service</a>
+      </ng-template>
+    </div>
+  </nav-nav-wrapper>
 </header>

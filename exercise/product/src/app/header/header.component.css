@@ -1,61 +1,45 @@
-/* src/app/header/header.component.css */
-
 .pirate-header {
-    display: flex;
-    justify-content: space-between; /* CRITICAL: Pushes logo left, navigation right */
-    align-items: center; 
-    padding: 15px 40px;
-    background: #1e1e1e; /* Very Dark Background */
-    border-bottom: 4px solid darkred; /* Thematic Accent */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background-color: #000;
+  width: 100%;
+  padding: 10px 24px; /* Reduced vertical padding for compactness */
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.4);
+  border-bottom: 2px solid #ffd700;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
+.pirate-nav-wrapper {
+  display: flex; /* NEW: Enable flexbox */
+  align-items: center; /* Vertically center image and text */
+  justify-content: space-between; /* Pushes content to opposite ends */
+  width: 100%; /* Must span full width of the header */
 }
 
-.pirate-title {
-    font-size: 1.8em;
-    color: gold; /* Main thematic color */
-    text-shadow: 1px 1px 2px #000;
-    margin: 0;
-    white-space: nowrap; /* Prevents title from wrapping */
+.logo-container {
+  /* No specific styling needed, serves as a simple wrapper */
+  display: flex; 
+  align-items: center;
 }
 
-/* --- Navigation Styling --- */
+.treasure-chest-image { 
+  /* Resize the image and add a small margin to the right */
+  max-height: 70px; /* Adjusted size for a prominent but controlled image */
+  width: auto;
+  margin-right: 30px; 
+}
 
 .pirate-nav {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Reduces the gap to be handled by the separator */
+  /* Text container remains a flex container to keep links aligned */
+  display: flex;
+  align-items: center;
+  /* Ensure the navigation uses the remaining space and justifies links to the right */
+  justify-content: flex-end;
 }
 
-.pirate-nav a {
-    /* Basic link styling */
-    color: #f0e68c; /* Pale Gold/Khaki */
-    text-decoration: none;
-    padding: 5px 10px;
-    transition: color 0.2s;
+.nav-link {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 1.1rem; 
+  margin: 0 10px;
+  transition: color 0.3s ease;
 }
 
-.pirate-nav a:hover {
-    color: white;
-}
-
-.separator {
-    color: #555; /* Light gray separator line */
-    font-weight: 300;
-}
-
-.chest-link {
-    display: inline-flex;
-    align-items: center;
-    font-weight: bold;
-    color: #ffcc00 !important; /* Keep chest link strongly gold */
-}
-
-.nav-icon {
-    height: 20px;
-    margin-right: 5px;
-}
+/* ... (rest of the existing CSS for .separator, .nav-icon, .user-menu, etc.) ... */
