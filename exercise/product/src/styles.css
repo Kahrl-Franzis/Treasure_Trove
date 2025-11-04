@@ -17,11 +17,11 @@ body {
     overflow-x: hidden;
 }
 
-/* FIX: Target the Angular root and the header wrapper to enforce black background and remove external spacing */
+/* FIX: Target the Angular root and the header wrapper to enforce wood background and remove external spacing */
 app-root, .header-wrapper {
     margin: 0;
     padding: 0;
-    background-color: #000 !important; /* Forces black background at the top */
+    background-color: #8b4513 !important; /* Forces wood/mahogany background at the top */
     display: block;
 }
 
@@ -47,9 +47,27 @@ h1, h2, h3 {
   margin-right: 20px;
 }
 
-/* --- Global Header Container (Black/Gold Pirate Design) --- */
+/* --- Global Header Container (Wood/Gold Pirate Design) --- */
 .pirate-header {
-  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%); 
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #8b4513 0px,
+      #8b4513 2px,
+      #a0522d 2px,
+      #a0522d 4px,
+      #8b4513 4px,
+      #8b4513 6px,
+      #654321 6px,
+      #654321 8px
+    ),
+    linear-gradient(
+      180deg,
+      #8b4513 0%,
+      #654321 50%,
+      #8b4513 100%
+    );
+  background-size: 8px 100%, 100% 100%; 
   width: 100%;
   padding: 10px 24px;
   box-shadow: 0 4px 8px rgba(255, 215, 0, 0.4);

@@ -39,12 +39,32 @@
 }
 
 
-/* --- 3. Global Header Container (Pirate Theme - Streamlined Design) --- */
+/* --- 3. Global Header Container (Pirate Theme - Wood Background) --- */
 .pirate-header {
   /* CRITICAL: Set position relative for the absolute anchor to work */
   position: relative; 
   
-  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+  /* Wood texture background */
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #8b4513 0px,
+      #8b4513 2px,
+      #a0522d 2px,
+      #a0522d 4px,
+      #8b4513 4px,
+      #8b4513 6px,
+      #654321 6px,
+      #654321 8px
+    ),
+    linear-gradient(
+      180deg,
+      #8b4513 0%,
+      #654321 50%,
+      #8b4513 100%
+    );
+  background-size: 8px 100%, 100% 100%;
+  
   width: 100%;
   min-width: 100%;
   
@@ -59,7 +79,8 @@
   box-shadow: 
     0 2px 0 rgba(139, 69, 19, 0.6),
     0 4px 8px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 215, 0, 0.2);
+    inset 0 1px 0 rgba(255, 215, 0, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
   
   /* Ensure header extends edge-to-edge */
   margin: 0;
