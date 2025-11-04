@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-
-<h1>Create Multiple Columns</h1>
-
-<div class="newspaper">
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
-<img routerLink="" src="../assets/GMART.png" />Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
+<div class="welcome-container">
+    <h1 class="pirate-title">Welcome to The Treasure Trove!</h1>
+    <p class="pirate-text">Your one-stop shop for legendary manga, comics, and forgotten tales.</p>
+    
+    <div class="action-card">
+        <h2 class="pirate-subtitle">Ready to set sail?</h2>
+        <p>The catalog holds all the loot you seek, Captain!</p>
+        
+        <button [routerLink]="['/treasures']" class="btn-hunt-treasure">
+            <span class="icon">🧭</span> HUNT FOR TREASURE
+        </button>
+    </div>
 </div>
-
-</body>
-</html>

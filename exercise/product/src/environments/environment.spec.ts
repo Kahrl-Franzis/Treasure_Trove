@@ -1,7 +1,5 @@
-import { environment } from './environment';
-
-describe('Environment', () => {
-  it('should create an instance', () => {
-    expect(new Environment()).toBeTruthy();
-  });
-});
+export const environment = {
+    production: false,
+    // CRITICAL FIX: The base URL should be the server and port only
+    apiBaseUrl: 'http://localhost:8080', 
+  };

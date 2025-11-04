@@ -1,32 +1,39 @@
-<div class="container-fluid hero-contact p-0 m-0">
-  <h2>eCommerce</h2>
-      <div *ngFor="let category of productsCategory" class="col-md-4 newspaper">
-          <div>{{category.categoryName}}</div>
-            <div  class="box" *ngFor="let prod of category.products" >
-            <img class="productimg" src="../assets/products/{{prod.imageFile}}.jpg"/>
-            <p class="productname">{{prod.name}}</p>
-            <p class="productcategory">{{prod.description}}</p> 
-            <p class="productcategory">{{prod.categoryName}}</p> 
-            <p class="productcategory">{{prod.unitOfMeasure}}</p> 
-            <p class="productcategory">{{prod.price}}</p>        
-            <img  routerLink="/cart" class="cart" src="../assets/icons/shoppingcart.svg" />
+<!-- src/app/product-category/product-category.component.html -->
+
+<div class="catalog-page-container">
+    <h1 class="pirate-font">Captain's Catalog of Treasures</h1>
+    
+    <!-- Error message display -->
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+    <!-- Product Grid: Displays items fetched from the backend -->
+    <div class="product-grid">
+        <!-- Loop through all the products fetched from the backend -->
+        <div *ngFor="let product of products" class="product-card">
+            
+            <!-- CRITICAL FIX 1: Use the correct 'imageUrl' property -->
+            <img [src]="product.imageUrl" [alt]="product.title" class="product-image">
+            
+            <div class="product-details">
+                
+                <!-- CRITICAL FIX 2: Use the correct 'title' property -->
+                <h3>{{ product.title }}</h3> 
+                
+                <p class="author">By {{ product.author }}</p>
+                
+                <p class="price">₱ {{ product.price | number:'1.2-2' }}</p>
+
+                <button 
+                    (click)="stashInChest(product)" 
+                    class="btn-stash"
+                    [disabled]="product.stockQuantity <= 0">
+                    {{ product.stockQuantity > 0 ? 'Stash in Chest' : 'Out of Stock!' }}
+                </button>
+                
+                <p *ngIf="product.stockQuantity > 0 && product.stockQuantity < 10" class="low-stock">
+                    (Low Treasure Warning!)
+                </p>
             </div>
-      </div>
-<!--    <table class="table">
-      <div *ngFor="let category of productsCategory" class="col-md-4">
-        <tr >
-          <h2>{{category.categoryName}}</h2>
-        </tr >
-        <tr >
-            <td *ngFor="let prod of category.products" class="col-md-4">
-            <img class="productimg" src="../assets/products/{{prod.imageFile}}.jpg"/>
-            <p class="productname">{{prod.name}}</p>
-            <p class="productcategory">{{prod.description}}</p> 
-            <p class="productcategory">{{prod.categoryName}}</p> 
-            <p class="productcategory">{{prod.unitOfMeasure}}</p> 
-            <p class="productcategory">{{prod.price}}</p>        
-            <img  routerLink="/cart" class="cart" src="../assets/icons/shoppingcart.svg" />
-          </td>
-        </tr>
-      </div>
-    </table>-->
+        </div>
+    </div>
+</div>

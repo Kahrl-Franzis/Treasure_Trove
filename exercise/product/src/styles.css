@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css (Global CSS file) */
+
+body {
+    background-color: #f4f4f4; /* Light gray background for body */
+    color: #333; /* Default text color */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content-area {
+    /* Main area for components to render, providing a clean white background */
+    background-color: #fff; 
+    padding: 0;
+    min-height: 90vh;
+}
+
+/* Ensure headings have a consistent look */
+h1, h2, h3 {
+    font-family: inherit;
+    margin-top: 0;
+}

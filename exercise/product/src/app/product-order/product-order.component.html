@@ -1,1 +1,35 @@
-<p>product-order works!</p>
+<div class="checkout-container">
+    <h1 class="pirate-font">Confirm Your Voyage Manifest</h1>
+    
+    <div *ngIf="orderStatusMessage" class="status-box" [class.error]="isProcessing">
+        <strong>Status:</strong> {{ orderStatusMessage }}
+    </div>
+
+    <ng-container *ngIf="orderPayload && orderPayload.orderItems && orderPayload.orderItems.length > 0; else emptyCart">
+        <div class="manifest-summary">
+            <h2>Items in Manifest: {{ orderPayload.orderItems.length }}</h2>
+            <p>Total Cost: ₱{{ cartTotal | number:'1.2-2' }}</p>
+            <p>Shipping To Pirate ID: {{ pirateId }}</p>
+        </div>
+    </ng-container>
+
+    <ng-template #emptyCart>
+        <div class="manifest-summary">
+            <h2>⚠️ Your cart is empty!</h2>
+            <p>Add some treasures first before setting sail.</p>
+        </div>
+    </ng-template>
+
+    <div class="checkout-actions">
+        <button 
+            class="btn-confirm-sail" 
+            (click)="confirmAndSetSail()" 
+            [disabled]="isProcessing || !orderPayload || !orderPayload.orderItems || orderPayload.orderItems.length === 0">
+            {{ isProcessing ? 'Processing...' : 'CONFIRM & SET SAIL!' }}
+        </button>
+        
+        <button class="btn-cancel" [routerLink]="['/chest']" [disabled]="isProcessing">
+            Cancel & Return to Chest
+        </button>
+    </div>
+</div>

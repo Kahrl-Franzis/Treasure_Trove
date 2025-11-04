@@ -1,37 +1,84 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style> 
-#main {
-  height: 100px;
-  border: 1px solid black; 
-  display: flex;
-  align-items: baseline;
-}
+<div class="auth-container">
+  <h1 class="pirate-title">
+    {{ isLoginView ? 'Login: Report to Captain' : 'Register: Sign Up the Crew' }}
+  </h1>
 
-#main div {
-  flex: 1;
-  border: 1px solid black;
-  display: flex;
-  align-items: center;
+  <p *ngIf="message" class="info-message" [class.error]="message.includes('Failed')">
+    {{ message }}
+  </p>
+
+  <!-- LOGIN FORM -->
+  <div *ngIf="isLoginView" class="auth-form login-form">
+    <form (ngSubmit)="handleLogin()" #loginFormRef="ngForm">
+      <input [(ngModel)]="loginForm.username" name="username" placeholder="Pirate Name" required />
+      <input [(ngModel)]="loginForm.password" name="password" type="password" placeholder="Password" required />
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+    <p class="toggle-link">
+      Not part of the crew?
+      <a (click)="toggleView()">Register here.</a>
+    </p>
+  </div>
+
+  <!-- REGISTER FORM -->
+  <div *ngIf="!isLoginView" class="auth-form register-form">
+    <form (ngSubmit)="handleRegister()" #registerFormRef="ngForm">
+      <input [(ngModel)]="registerForm.username" name="username" placeholder="Choose Pirate Name" required />
+      <input [(ngModel)]="registerForm.email" name="email" type="email" placeholder="Email" required />
+      <input [(ngModel)]="registerForm.passwordHash" name="passwordHash" type="password" placeholder="Password" required />
+      <input [(ngModel)]="registerForm.defaultShippingAddress" name="defaultShippingAddress" placeholder="Default Shipping Port" required />
+      <button type="submit" class="btn-register">Sign Up</button>
+    </form>
+    <p class="toggle-link">
+      Already registered?
+      <a (click)="toggleView()">Login here.</a>
+    </p>
+  </div>
+</div>
+
+<style>
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.pirate-title {
+  color: darkred;
+}
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.btn-login,
+.btn-register {
+  width: 100%;
+  padding: 12px;
+  background-color: #6b4c2b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.toggle-link a {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.info-message {
+  padding: 10px;
+  background-color: lightgreen;
+  border-radius: 4px;
+}
+.info-message.error {
+  background-color: lightcoral;
 }
 </style>
-</head>
-<body>
-
-<h1>The align-items Property</h1>
-
-<div id="main">
-  <div style="background-color:coral;min-height:100px;max-width:100px;">RED</div>
-  <div style="background-color:lightblue;min-height:100px;max-width:100px;">BLUE</div>  
-  <div style="background-color:lightgreen;min-height:100px;max-width:100px;">Green </div>
-  <div style="background-color:lightgreen;min-height:100px;max-width:100px;">Green </div>
-</div>
-<div id="main">
-    <div style="background-color:coral;min-height:100px;max-width:100px;">RED</div>
-    <div style="background-color:lightblue;min-height:100px;max-width:100px;">BLUE</div>  
-    <div style="background-color:lightgreen;min-height:100px;max-width:100px;">Green </div>    
-  </div>
-  
-</body>
-</html>

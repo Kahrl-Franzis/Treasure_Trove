@@ -1,146 +1,43 @@
+// src/app/product-category/product-category.component.ts
+
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Product } from '../model/product';
-import { ProductCategory } from '../model/product-category';
+import { CommonModule, DecimalPipe } from '@angular/common'; // FIX 1
+import { RouterModule } from '@angular/router';
+import { Product } from '../model/product'; 
 import { ProductService } from '../service/product.service';
+import { CartService } from '../service/cart.service'; 
 
 @Component({
   selector: 'app-product-category',
   standalone: true,
-  imports: [CommonModule],
+  // FIX 2: Add CommonModule, DecimalPipe and RouterModule to imports
+  imports: [CommonModule, DecimalPipe, RouterModule], 
   templateUrl: './product-category.component.html',
   styleUrls: ['./product-category.component.css'],
   providers: [ProductService],
 })
 export class ProductCategoryComponent implements OnInit {
-  public productsCategory: ProductCategory[] = [];
+    public products: Product[] = []; 
+    public errorMessage: string = ''; // FIX 3: Add missing error property
 
-  constructor(private productService: ProductService) {
-    /*
-    // Sample mock data (kept for reference only)
-    this.productsCategory = [
-      {
-        "categoryName": "Snacks",
-        "products": [
-          {
-            "id": 1,
-            "name": "Alaska",
-            "description": "This is a description of Alaska",
-            "categoryName": "Snack",
-            "unitOfMeasure": "can",
-            "imageFile": "Alaska",
-            "price": "30.00"
-          },
-          {
-            "id": 2,
-            "name": "Cardbury",
-            "description": "This is a description of Cardbury",
-            "categoryName": "Snacks",
-            "unitOfMeasure": "ounce",
-            "imageFile": "cardbury",
-            "price": "10.00"
-          },
-          {
-            "id": 3,
-            "name": "Milo",
-            "description": "This is a description of Milo",
-            "unitOfMeasure": "can",
-            "categoryName": "Snacks",
-            "imageFile": "milo",
-            "price": "120.00"
-          }
-        ]
-      },
-      {
-        "categoryName": "Audio",
-        "products": [
-          {
-            "id": 4,
-            "name": "denonreceiver",
-            "description": "This is a description of Denon receiver",
-            "unitOfMeasure": "piece",
-            "imageFile": "denonreceiver",
-            "categoryName": "Audio",
-            "price": "1420.00"
-          },
-          {
-            "id": 5,
-            "name": "Mango",
-            "description": "This is a description of Mango",
-            "unitOfMeasure": "piece",
-            "imageFile": "mango",
-            "categoryName": "Audio",
-            "price": "0.00"
-          },
-          {
-            "id": 6,
-            "name": "soundbar",
-            "description": "This is a description of the Sound bar",
-            "unitOfMeasure": "piece",
-            "imageFile": "soundbar",
-            "categoryName": "Audio",
-            "price": "30.00"
-          },
-          {
-            "id": 7,
-            "name": "soundbar2",
-            "description": "This is a description of another soundbar",
-            "categoryName": "Audio",
-            "imageFile": "soundbar2",
-            "unitOfMeasure": "piece",
-            "price": "350.00"
-          }
-        ]
-      },
-      {
-        "categoryName": "Dessert",
-        "products": [
-          {
-            "id": 8,
-            "name": "banana",
-            "description": "This is a description of banana",
-            "categoryName": "Dessert",
-            "imageFile": "banana",
-            "unitOfMeasure": "kilo",
-            "price": "20.00"
-          },
-          {
-            "id": 9,
-            "name": "Banana Split",
-            "description": "This is a description of banana split ice cream",
-            "categoryName": "Dessert",
-            "imageFile": "bananasplit",
-            "unitOfMeasure": "serving",
-            "price": "220.00"
-          },
-          {
-            "id": 10,
-            "name": "Leo Milka",
-            "description": "This is a description of Leo Milka",
-            "categoryName": "Dessert",
-            "imageFile": "leomilka",
-            "unitOfMeasure": "grams",
-            "price": "620.00"
-          },
-          {
-            "id": 11,
-            "name": "Strawberry",
-            "description": "This is a description of Strawberry",
-            "categoryName": "Dessert",
-            "imageFile": "strawberry",
-            "unitOfMeasure": "grams",
-            "price": "10.00"
-          }
-        ]
-      }
-    ];
-    */
-  }
+    constructor(
+        private productService: ProductService,
+        private cartService: CartService 
+    ) {}
 
-  ngOnInit(): void {
-    console.log('ngOnInit called');
-    this.productService.getData().subscribe((data) => {
-      this.productsCategory = data;
-    });
-  }
+    ngOnInit(): void {
+        this.productService.getProducts().subscribe({
+          next: (data) => {
+            this.products = data;
+          },
+          error: (err) => {
+            this.errorMessage = 'Failed to load treasures. Check backend connection.';
+          }
+        });
+    }
+
+    stashInChest(product: Product): void {
+        this.cartService.addToCart(product, 1);
+        alert(`${product.title} stashed in chest!`);
+    }
 }

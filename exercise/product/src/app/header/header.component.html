@@ -1,25 +1,30 @@
-<div class="header">
-  <table>
-    <tr>
-      <td>
-        <a [routerLink]="['/']">
-          <img src="assets/GMART.png" alt="GMART Logo" />
+<header class="pirate-header">
+    <nav class="pirate-nav">
+        <a [routerLink]="['/']" class="nav-link">Homeport</a>
+        <span class="separator">|</span>
+        <a [routerLink]="['/treasures']" class="nav-link">Catalog of Treasures</a>
+        <span class="separator">|</span>
+        <a [routerLink]="['/chest']" class="nav-link chest-link">
+            <img src="assets/icons/chest.png" alt="Treasure Chest" class="nav-icon">
+            Treasure Chest
         </a>
-      </td>
-    </tr>
+        <span class="separator">|</span>
+        
+        <ng-container *ngIf="authService.currentUser | async as user; else loginLink">
+            <div class="user-menu" (click)="toggleDropdown()">
+                <a class="nav-link user-name-link">{{ user.username }}</a>
+                
+                <div class="dropdown-content" [class.show]="dropdownOpen">
+                    <a href="#" (click)="logout()">Logout</a>
+                    <a [routerLink]="['/settings']">Settings</a>
+                    <a (click)="deleteAccount()">Delete Account</a>
+                </div>
+            </div>
+        </ng-container>
+        
+        <ng-template #loginLink>
+            <a [routerLink]="['/service']" class="nav-link">Crew Service</a>
+        </ng-template>
 
-    <tr>
-      <td class="phrase" colspan="6">
-        Where you enjoy the most shopping experience
-      </td>
-    </tr>
-
-    <tr>
-      <td *ngFor="let menu of menus" class="col-md-2">
-        <button class="button1" [routerLink]="['/', menu.routerPath]">
-          {{ menu.name }}
-        </button>
-      </td>
-    </tr>
-  </table>
-</div>
+    </nav>
+</header>

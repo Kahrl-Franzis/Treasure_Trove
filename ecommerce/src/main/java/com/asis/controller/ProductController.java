@@ -1,108 +1,50 @@
 package com.asis.controller;
 
-import com.asis.model.Product;
-import com.asis.model.ProductCategory;
+import com.asis.entity.Product;
 import com.asis.service.ProductService;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@Slf4j
+@RequestMapping("/api/products") // The API endpoint for Treasures
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    @RequestMapping("/api/product")
-    public ResponseEntity<?>  getProductCategories()
-    {
-        HttpHeaders headers = new HttpHeaders();
-        ResponseEntity<?> response;
-        try {
-            List<ProductCategory> mappedProducts = productService.listProductCategories();
-            //Map<String,List<Product>> mappedProducts = productService.getCategoryMappedProducts();
-            log.warn("Product Categories Count:::::::" + mappedProducts.size());
-            response = ResponseEntity.ok(mappedProducts);
-        }
-        catch( Exception ex)
-        {
-            log.error("Failed to retrieve product with id : {}", ex.getMessage(), ex);
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        }
-        return response;
+    // Dependency Injection
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    @PutMapping("/api/product")
-    public ResponseEntity<?> add(@RequestBody Product product){
-        log.info("Input >> " + product.toString() );
-        HttpHeaders headers = new HttpHeaders();
-        ResponseEntity<?> response;
-        try {
-            Product newProduct = productService.create(product);
-            log.info("created product >> " + newProduct.toString() );
-            response = ResponseEntity.ok(newProduct);
-        }
-        catch( Exception ex)
-        {
-            log.error("Failed to retrieve product with id : {}", ex.getMessage(), ex);
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        }
-        return response;
-    }
-    @PostMapping("/api/product")
-    public ResponseEntity<?> update(@RequestBody Product product){
-        log.info("Update Input >> product.toString() ");
-        HttpHeaders headers = new HttpHeaders();
-        ResponseEntity<?> response;
-        try {
-            Product newProduct = productService.update(product);
-            response = ResponseEntity.ok(product);
-        }
-        catch( Exception ex)
-        {
-            log.error("Failed to retrieve product with id : {}", ex.getMessage(), ex);
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        }
-        return response;
+    // GET /api/products -> List all Treasures
+    @GetMapping
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> products = productService.getAllProducts();
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("api/product/{id}")
-    public ResponseEntity<?> get(@PathVariable final Integer id){
-        log.info("Input product id >> " + Integer.toString(id));
-        HttpHeaders headers = new HttpHeaders();
-        ResponseEntity<?> response;
-        try {
-            Product product = productService.get(id);
-            response = ResponseEntity.ok(product);
-        }
-        catch( Exception ex)
-        {
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        }
-        return response;
+    // GET /api/products/1 -> Get a single Treasure
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        // Assuming your ProductService.get method accepts Long ID now
+        Product product = productService.get(id);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
-    @DeleteMapping("/api/product/{id}")
-    public ResponseEntity<?> delete(@PathVariable final Integer id){
-        log.info("Input >> " + Integer.toString(id));
-        HttpHeaders headers = new HttpHeaders();
-        ResponseEntity<?> response;
-        try {
-            productService.delete(id);
-            response = ResponseEntity.ok(null);
-        }
-        catch( Exception ex)
-        {
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        }
-        return response;
+
+    // POST /api/products -> Create a new Treasure (Admin/Captain function)
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        Product newProduct = productService.create(product);
+        return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        // Call the service method to handle the deletion logic
+        productService.delete(id);
+        // Returns 204 No Content, which is standard for a successful DELETE
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

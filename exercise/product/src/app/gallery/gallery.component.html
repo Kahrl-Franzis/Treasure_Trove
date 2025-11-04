@@ -1,1 +1,30 @@
-<p>gallery works!</p>
+<div class="catalog-page-container">
+    <h1 class="pirate-font">Captain's Catalog of Treasures</h1>
+    
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+    <div class="product-grid">
+        <div *ngFor="let product of products" class="product-card">
+            
+            <img [src]="product.imageUrl" [alt]="product.title" class="product-image">
+            
+            <div class="product-details">
+                <h3>{{ product.title }}</h3>
+                <p class="author">By {{ product.author }}</p>
+
+                <p class="price">₱ {{ product.price | number:'1.2-2' }}</p>
+
+                <button 
+                    (click)="stashInChest(product)" 
+                    class="btn-stash"
+                    [disabled]="product.stockQuantity <= 0">
+                    {{ product.stockQuantity > 0 ? 'Stash in Chest' : 'Out of Stock!' }}
+                </button>
+                
+                <p *ngIf="product.stockQuantity > 0 && product.stockQuantity < 10" class="low-stock">
+                    (Low Treasure Warning!)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,51 @@
-<p>shopping-cart works!</p>
+<!-- src/app/shopping-cart/shopping-cart.component.html -->
+
+<div class="chest-container">
+    <h1 class="pirate-font">Your Treasure Chest Manifest</h1>
+
+    <ng-container *ngIf="(cartItems$ | async) as items">
+        
+        <p *ngIf="items.length === 0" class="empty-message">
+            Your chest is empty! Time to find some loot, Captain.
+            <a [routerLink]="['/treasures']">Browse the Catalog.</a>
+        </p>
+
+        <div *ngIf="items.length > 0" class="cart-table-wrapper">
+            <table class="cart-table">
+                <thead>
+                    <!-- ... table headers ... -->
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items">
+                        <td>
+                            <!-- FIX 1: These properties must exist on the Product model for the template to compile -->
+                            <img [src]="item.imageUrl" [alt]="item.title" class="item-thumb">
+                            <span>{{ item.title }}</span>
+                        </td>
+                        <!-- FIX 2: Arithmetic error fix is handled by explicit number pipe -->
+                        <td>{{ item.price | number:'1.2-2' }}</td>
+                        <td>
+                            {{ item.quantity }}
+                        </td>
+                        <td>{{ (item.price * item.quantity) | number:'1.2-2' }}</td>
+                        <td>
+                            <button class="btn-remove" (click)="removeItem(item.id)">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <h2>Total Loot: ₱{{ cartTotal | number:'1.2-2' }}</h2>
+                
+                <button 
+                    class="btn-set-sail" 
+                    (click)="setSailToCheckout()">
+                    Confirm & Set Sail to Checkout!
+                </button>
+                
+                <button class="btn-clear" (click)="clearChest()">Clear Chest</button>
+            </div>
+        </div>
+    </ng-container>
+</div>

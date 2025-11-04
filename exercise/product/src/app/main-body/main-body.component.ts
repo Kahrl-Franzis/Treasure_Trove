@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../model/product';
+import { CommonModule } from '@angular/common';
 import { ProductCategory } from '../model/product-category';
 import { ProductService } from '../service/product.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-body',
+  imports: [CommonModule, RouterModule],
   templateUrl: './main-body.component.html',
   styleUrls: ['./main-body.component.css']
 })
