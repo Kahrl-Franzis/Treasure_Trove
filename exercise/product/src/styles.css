@@ -1,15 +1,31 @@
 /* src/styles.css (Global CSS file) */
 
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
-    background-color: #f4f4f4; /* Light gray background for body */
-    color: #333; /* Default text color */
+    background-color: #f4f4f4; 
+    color: #333; 
     font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* FIX: Target the Angular root and the header wrapper to enforce black background and remove external spacing */
+app-root, .header-wrapper {
+    margin: 0;
+    padding: 0;
+    background-color: #000 !important; /* Forces black background at the top */
+    display: block;
 }
 
 .content-area {
-    /* Main area for components to render, providing a clean white background */
     background-color: #fff; 
     padding: 0;
     min-height: 90vh;
@@ -19,4 +35,102 @@ body {
 h1, h2, h3 {
     font-family: inherit;
     margin-top: 0;
+}
+
+/* header.component.css (Component-Specific Styles) */
+
+/* --- Definitive Image Resizing Fix --- */
+#main-pirate-logo {
+  /* THIS IS THE CRITICAL FIX: Shrinks the large treasure chest image */
+  max-height: 50px !important; /* Smaller size for a sleek header */
+  width: auto;
+  margin-right: 20px;
+}
+
+/* --- Global Header Container (Black/Gold Pirate Design) --- */
+.pirate-header {
+  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%); 
+  width: 100%;
+  padding: 10px 24px;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.4);
+  border-bottom: 2px solid #ffd700;
+}
+
+/* --- Layout Wrapper: Left (Image) vs. Right (Nav) --- */
+.pirate-nav-wrapper {
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: space-between; /* Pushes image left, navigation right */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Right Side: Navigation Links Alignment --- */
+.pirate-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* --- Navigation Link Styles (Gold Theme) --- */
+.nav-link {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.separator {
+  color: #ffd700;
+  margin: 0 8px;
+  font-weight: bold;
+}
+
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  margin-right: 6px;
+  transform: translateY(-2px);
+}
+
+/* --- Dropdown Menu Styles --- */
+.user-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #111;
+  right: 0;
+  top: 35px; 
+  border: 1px solid #ffd700;
+  border-radius: 5px;
+  z-index: 100;
+  min-width: 150px;
+}
+
+.dropdown-content a {
+  color: #ffd700;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+.dropdown-content.show {
+  display: block;
 }

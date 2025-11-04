@@ -1,0 +1,156 @@
+/* src/app/product-order/product-order.component.css */
+
+/* Mahogany background for the entire page */
+.checkout-container {
+    background-color: #8b4513; /* Mahogany color */
+    min-height: 100vh;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+/* Pirate-themed title */
+.pirate-font {
+    color: #ffd700;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+/* Status box */
+.status-box {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #fcf8e3 0%, #f5e6d3 100%);
+    border: 3px solid #5a3b1f;
+    border-radius: 8px;
+    color: #3d2f23;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.1em;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.status-box.error {
+    background: linear-gradient(135deg, #ffe4e1 0%, #ffcccb 100%);
+    border-color: #8b0000;
+}
+
+.status-box strong {
+    color: #8b4513;
+    font-weight: bold;
+}
+
+/* Manifest summary card */
+.manifest-summary {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #fcf8e3 0%, #f5e6d3 100%);
+    border: 3px solid #5a3b1f;
+    border-radius: 8px;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.manifest-summary h2 {
+    color: #3d2f23;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.manifest-summary p {
+    color: #3d2f23;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.2em;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+/* Checkout actions */
+.checkout-actions {
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+/* Gold buttons with oblong background */
+.btn-confirm-sail,
+.btn-cancel {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+    color: #000;
+    border: 2px solid #8b6914;
+    border-radius: 20px; /* Oblong shape */
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    margin: 8px;
+}
+
+.btn-confirm-sail:hover:not(:disabled),
+.btn-cancel:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ffed4e 0%, #ffd700 50%, #ffed4e 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-color: #b8860b;
+}
+
+.btn-confirm-sail:active:not(:disabled),
+.btn-cancel:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-confirm-sail:disabled,
+.btn-cancel:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-cancel {
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
+    color: #fff;
+    border-color: #5a3b1f;
+}
+
+.btn-cancel:hover:not(:disabled) {
+    background: linear-gradient(135deg, #a0522d 0%, #8b4513 50%, #a0522d 100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 20px 15px;
+    }
+    
+    .pirate-font {
+        font-size: 1.8em;
+    }
+    
+    .btn-confirm-sail,
+    .btn-cancel {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+    }
+}
+

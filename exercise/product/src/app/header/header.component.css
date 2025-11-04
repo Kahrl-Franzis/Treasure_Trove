@@ -1,45 +1,205 @@
-.pirate-header {
-  background-color: #000;
-  width: 100%;
-  padding: 10px 24px; /* Reduced vertical padding for compactness */
-  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.4);
-  border-bottom: 2px solid #ffd700;
-}
+/* header.component.css (Component-Specific Styles) */
 
-.pirate-nav-wrapper {
-  display: flex; /* NEW: Enable flexbox */
-  align-items: center; /* Vertically center image and text */
-  justify-content: space-between; /* Pushes content to opposite ends */
-  width: 100%; /* Must span full width of the header */
-}
-
+/* --- 1. Logo Styling - Streamlined --- */
 .logo-container {
-  /* No specific styling needed, serves as a simple wrapper */
-  display: flex; 
-  align-items: center;
-}
-
-.treasure-chest-image { 
-  /* Resize the image and add a small margin to the right */
-  max-height: 70px; /* Adjusted size for a prominent but controlled image */
-  width: auto;
-  margin-right: 30px; 
-}
-
-.pirate-nav {
-  /* Text container remains a flex container to keep links aligned */
   display: flex;
   align-items: center;
-  /* Ensure the navigation uses the remaining space and justifies links to the right */
-  justify-content: flex-end;
+  flex-shrink: 0;
 }
 
+#main-pirate-logo {
+  max-height: 45px !important; 
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+#main-pirate-logo:hover {
+  transform: scale(1.05);
+}
+
+/* --- 2. Anchor Icon Styling (Top-Left Corner) --- */
+.anchor-corner-logo {
+    /* Anchor positioning will require 'position: relative' on its closest ancestor (.pirate-header) */
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 60px; 
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101; 
+}
+
+.anchor-icon {
+    max-height: 40px; 
+    width: auto;
+}
+
+
+/* --- 3. Global Header Container (Pirate Theme - Streamlined Design) --- */
+.pirate-header {
+  /* CRITICAL: Set position relative for the absolute anchor to work */
+  position: relative; 
+  
+  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+  width: 100%;
+  min-width: 100%;
+  
+  /* Streamlined padding */
+  padding: 12px 20px;
+  
+  /* FIX: Ensure padding doesn't cause overflow */
+  box-sizing: border-box; 
+  
+  /* Pirate-themed decorative border - rope-like effect */
+  border-bottom: 3px solid #ffd700;
+  box-shadow: 
+    0 2px 0 rgba(139, 69, 19, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 215, 0, 0.2);
+  
+  /* Ensure header extends edge-to-edge */
+  margin: 0;
+  left: 0;
+  right: 0;
+}
+
+/* --- 4. Layout Wrapper: Streamlined Navigation Layout --- */
+.pirate-nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 20px;
+  
+  /* FIX: Allow shrinking to prevent horizontal overflow */
+  min-width: 0;
+}
+
+/* --- 5. Navigation Menu - Streamlined Pirate Style --- */
+.pirate-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  
+  /* FIX: Allow shrinking to prevent horizontal overflow */
+  flex-shrink: 1; 
+  min-width: 0;
+}
+
+/* --- 6. Navigation Link Styles - Pirate Theme (Streamlined) --- */
 .nav-link {
   color: #ffd700;
-  font-weight: bold;
-  font-size: 1.1rem; 
-  margin: 0 10px;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: 'Georgia', 'Times New Roman', serif; /* More elegant, pirate-like */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  
+  padding: 6px 12px;
+  border-radius: 3px;
+  
+  /* Prevent links from wrapping/breaking badly */
+  white-space: nowrap; 
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-/* ... (rest of the existing CSS for .separator, .nav-icon, .user-menu, etc.) ... */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #ffd700;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.nav-link:hover::before {
+  width: 80%;
+}
+
+.separator {
+  color: #8b4513; /* Brown/tan color for weathered look */
+  margin: 0 2px;
+  font-weight: bold;
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 6px;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 1px 2px rgba(255, 215, 0, 0.4));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.chest-link:hover .nav-icon {
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8));
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* --- 7. Dropdown Menu Styles - Pirate Theme --- */
+.user-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+  right: 0;
+  top: 40px; 
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 215, 0, 0.1);
+  z-index: 100;
+  min-width: 160px;
+  padding: 4px 0;
+}
+
+.dropdown-content a {
+  color: #ffd700;
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.15) 0%, transparent 100%);
+  color: #fff;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.8);
+  padding-left: 20px;
+}
+
+.dropdown-content.show {
+  display: block;
+}
